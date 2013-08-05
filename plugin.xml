@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="emailcomposer"
+        version="2.0.0">
+
+  <name>EmailComposer</name>
+
+  <description>
+    A Cordova plugin for composing new e-mail messages on iOS devices.  
+    Supports HTML formatted messages and file attachments.
+  </description>
+
+  <info>
+    JavaScript/Mocha unit tests and XCode unit tests are availabe from the source
+    repository for EmailCompoer.
+  </info>
+
+  <author>Jesse MacFadyen; maintained by Steve Jansen (stevejansen_github@icloud.com)</author>
+
+  <license>The MIT License (MIT)</license>
+
+  <engines>
+      <engine name="cordova" version=">=2.7.0"/>
+  </engines>
+
+  <platform name="ios">
+
+    <!-- optional file needed for backwards compatability with version 1.0 of this plugin -->
+    <asset src="www/EmailComposer-Deprecated.js" target="plugins/EmailComposer-Deprecated.js" />
+    <!-- optional sample implementation of the plugin -->
+    <asset src="www/EmailComposer.html" target="examples/EmailComposer.html" />
+
+    <js-module src="EmailComposer.js" name="EmailComposer">
+      <runs />
+    </js-module>
+
+    <!-- Cordova >= 2.7 -->
+    <config-file target="config.xml" parent="/*">
+      <feature name="EmailComposer">
+        <param name="ios-package" value="EmailComposer" />
+      </feature>
+    </config-file>
+
+    <framework src="MessageUI.framework" />
+    <framework src="MobileCoreServices.framework" />
+
+    <header-file src="src/ios/EmailComposer.h" />
+    <source-file src="src/ios/EmailComposer.m" />
+    <header-file src="src/ios/NSData+Base64.h" />
+    <source-file src="src/ios/NSData+Base64.m" />
+  </platform>
+</plugin>
