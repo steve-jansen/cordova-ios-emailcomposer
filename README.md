@@ -3,11 +3,12 @@ Cordova EmailComposer Plugin for iOS
 
 A Cordova plugin for iOS devices to create e-mail messages via Apple's Mail.app compose view.
 
-Supports Cordova 2.7 and higher; tested against Cordova 3.0
+### Requirements
+* Supports Cordova 2.7 and higher;
+* Tested against Cordova 3.0;
+* Cordova <2.7 support is possible with manual editing of the plist/config settings for plugins and optionally enabling ARC
 
-*usage with Cordova <2.7 is possible with manual editing of the plist/config settings for plugins and optionally enabling ARC*
-
-# Installation
+### Installation
 
 The easy way via the cordova-cli:
 
@@ -28,20 +29,23 @@ The hard way via manual labor:
 * Modify the `Cordova.plist` Plugins section to include: key EmailComposer value EmailComposer
 
 
-# Usage
+### Example Implementation
 
 An example of using this plugin will be copied by the cordova-cli to your Xcode project
 as `www/examples/EmailComposer.html`.  The example depends on some of the files used by
-the Cordova Hello, World example.  Add an href like
-`<a href="examples/EmailComposer.html">Email Composer</a> in your `www/index.html` source
+the Cordova Hello, World example.  Add an href like below to your `www/index.html` source
 to view the example within your app.
 
+    <a href="examples/EmailComposer.html">Email Composer</a>
 
-An example JS implemenation using `cordova.require`:
+
+### Usage
+
+Using `cordova.require`:
 
     var emailComposer = cordova.require('emailcomposer.EmailComposer')
 
-    /* alternatively loads as just EmailComposer or window
+    /* alternatively exists in global scope as EmailComposer if you embed via a script tag */
 
     emailComposer.show({ 
       to: 'to@example.com',
@@ -77,9 +81,11 @@ An example JS implemenation using `cordova.require`:
     });
 
 
-# Deprecated Usage / Backwards Compatability
+### Deprecated Usage / Backwards Compatability
 
-For backwards compatability with version 1.x of this plugin, which used the Cordova 1.x plugin specification, the following methods are avaialble on the window.plugins global object when including both `EmailComposer.js` and `EmailComposer-Deprecated.js`
+For backwards compatability with version 1.x of this plugin and the EmailComposerWithAttachments plug,
+the following methods are avaialble on the window.plugins global object when
+embedding both `EmailComposer.js` and `EmailComposer-Deprecated.js`
 
   <script src="EmailComposer.js" />
   <script src="EmailComposer-Deprecated.js" />
@@ -94,7 +100,7 @@ For backwards compatability with version 1.x of this plugin, which used the Cord
   </script>
 
 
-# Credits
+### Credits
 
   - Created by Jesse MacFadyen on October 2005
   - Added Cordova 1.5 support by @RandyMcMillan on March 2012
@@ -104,14 +110,14 @@ For backwards compatability with version 1.x of this plugin, which used the Cord
   - Integrated Guido Sabatini's detection of mime type for file attachments that use a file system path by @steve-jansen on June 2013
 
 
-# Reporting Bugs / Request Features
+### Reporting Bugs / Request Features
 
 Please create a GitHub issue to report a bug or request a feature 
 @ http://github.com/steve-jansen/corodova-emailcomposer/issues
 
-# Contributing
+### Contributing
 
-I have yet to find an sane workflow for running/testing changes to the plugin.
+I have yet to find a good workflow for running/testing changes to the plugin.
 
 My less than ideal way today is to recreate a "Hello, World" Cordova project with
 my plugin via:
