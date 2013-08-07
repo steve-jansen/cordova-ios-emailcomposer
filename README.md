@@ -112,8 +112,8 @@ embedding both `EmailComposer.js` and `EmailComposer-Deprecated.js`
 
 ### Reporting Bugs / Request Features
 
-Please create a GitHub issue to report a bug or request a feature 
-@ http://github.com/steve-jansen/corodova-emailcomposer/issues
+Please create a GitHub issue to report a bug or request a feature @ https://github.com/steve-jansen/cordova-ios-emailcomposer/issues
+
 
 ### Contributing
 
