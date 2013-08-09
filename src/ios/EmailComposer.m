@@ -23,12 +23,12 @@
 - (void) show:(CDVInvokedUrlCommand*)command
 {
     NSArray* map;
-	NSString* to;
-	NSString* cc;
-	NSString* bcc;
-	NSString* subject;
-	NSString* body;
-	NSString* isHtml;
+    NSString* to;
+    NSString* cc;
+    NSString* bcc;
+    NSString* subject;
+    NSString* body;
+    NSString* isHtml;
     NSString* attachmentsJSON;
 
     self.callbackId = command.callbackId;
@@ -56,25 +56,25 @@
             isHtml = [map valueForKey:@"isHtml"];
             attachmentsJSON = [map valueForKey:@"attachments"];
         
-        	if([self argumentExists:subject])
-        		[self.picker setSubject:subject];
+            if([self argumentExists:subject])
+                [self.picker setSubject:subject];
     
-        	if([self argumentExists:body])
-        	{
-        		if(isHtml != nil && [isHtml boolValue])
-        			[self.picker setMessageBody:body isHTML:YES];
-        		else
-        			[self.picker setMessageBody:body isHTML:NO];
-        	}
-	
-        	if([self argumentExists:to])
-        		[self.picker setToRecipients:[to componentsSeparatedByString:@","]];
+            if([self argumentExists:body])
+            {
+                if(isHtml != nil && [isHtml boolValue])
+                    [self.picker setMessageBody:body isHTML:YES];
+                else
+                    [self.picker setMessageBody:body isHTML:NO];
+            }
+    
+            if([self argumentExists:to])
+                [self.picker setToRecipients:[to componentsSeparatedByString:@","]];
             
-        	if([self argumentExists:cc])
-        		[self.picker setCcRecipients:[cc componentsSeparatedByString:@","]];
+            if([self argumentExists:cc])
+                [self.picker setCcRecipients:[cc componentsSeparatedByString:@","]];
     
-        	if([self argumentExists:bcc])
-        		[self.picker setBccRecipients:[bcc componentsSeparatedByString:@","]];
+            if([self argumentExists:bcc])
+                [self.picker setBccRecipients:[bcc componentsSeparatedByString:@","]];
     
             if([self argumentExists:attachmentsJSON])
                 [self addAttachments:self.picker withConfig:attachmentsJSON];
@@ -173,43 +173,43 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     int composeResult = 0;
-	
+
+    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
+    self.picker = nil;
+
     // corresponds to the EmailComposer.ComposeResult enum of the JS API
-	switch (result)
+    switch (result)
     {
         case MFMailComposeResultCancelled:
-			composeResult = 0;
+            composeResult = 0;
             break;
         case MFMailComposeResultSaved:
-			composeResult = 1;
+            composeResult = 1;
             break;
         case MFMailComposeResultSent:
-			composeResult = 2;
+            composeResult = 2;
             break;
         case MFMailComposeResultFailed:
             composeResult = 3;
             break;
         default:
-			composeResult = 4;
+            composeResult = 4;
             break;
     }
-	
-    [self.viewController dismissModalViewControllerAnimated:YES];
-	
+    
+    
     if ( result < MFMailComposeResultFailed )
     {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:composeResult];
-        javaScript = [pluginResult toSuccessCallbackString:[self callbackId]];
     }
     else
     {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsInt:composeResult];
-        javaScript = [pluginResult toErrorCallbackString:[self callbackId]];
     }
     
-    [self writeJavascript:javaScript];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:[self callbackId]];
+    self.callbackId = nil;
 }
 
 // Retrieve the mime type from the file extension

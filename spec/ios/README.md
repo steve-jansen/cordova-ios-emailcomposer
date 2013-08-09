@@ -10,15 +10,14 @@ To add the unit test target in the Xcode project:
 
 1. Select File > New > Target
 2. In the "Template for your new target" dialog, select iOS > Other > Cocoa Touch Unit Testing Bundle
-3. Use the value `EmailComposerUnitTests` for the Product Name
-4. Delete the two files created by XCode: `EmailComposerUnitTests/EmailComposerUnitTests.h` and `EmailComposerUnitTests/EmailComposerUnitTests.m`
+3. Use `EmailComposerUnitTests` for the Product Name of the target
+4. In the project directory, run 
+   `cp spec/ios/* HelloCordova/platforms/ios/EmailComposerUnitTests/`
 5. In Xcode, select File > Add Files to ...
-6. Select all files in `spec/ios/*`
+6. Select all files in `HelloCordova/platforms/ios/EmailComposerUnitTests/*`
 7. Select the option to add the files to the `EmailComposerUnitTests` target
 8. Edit the `EmailComposerUnitTests` target in the `HelloCordova` project these frameworks and sources:
-   * EmailComposer.h
    * EmailCompser.m
-   * NSData+Base64.h
    * NSData+Base64.m
    * CoreGraphics.framework
    * CoreLocation.framework
