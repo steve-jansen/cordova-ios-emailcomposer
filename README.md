@@ -102,7 +102,7 @@ embedding both `EmailComposer.js` and `EmailComposer-Deprecated.js`
 
 ### Credits
 
-  - Created by Jesse MacFadyen on October 2005
+  - Created by Jesse MacFadyen on April 5th, 2010
   - Added Cordova 1.5 support by @RandyMcMillan on March 2012
   - Added support for optional file attachments by @steve-jansen on October 2012
   - Upgraded to the Cordova 2.1 `void:(CDVInvokedUrlCommand*)` signature by @steve-jansen on November 2012
