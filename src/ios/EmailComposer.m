@@ -86,7 +86,7 @@
     
     // ARC support
     #if !(__has_feature(objc_arc))
-        [picker release];
+        [_picker release];
     #endif
 }
 
